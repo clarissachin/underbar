@@ -72,18 +72,23 @@
     // implemented for you. Instead of using a standard `for` loop, though,
     // it uses the iteration helper `each`, which you will need to write.
     var result = -1;
-
     _.each(array, function(item, index) {
       if (item === target && result === -1) {
         result = index;
       }
     });
-
     return result;
   };
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    var array = [];
+    _.each(collection, function(element) {
+      if (test(element)) {
+        array.push(element);
+      }
+    });
+    return array;
   };
 
   // Return all elements of an array that don't pass a truth test.
@@ -94,6 +99,11 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var resultSet = new Set();
+    _.each(array, function(element) {
+      resultSet.add(element);
+    });
+    return Array.from(resultSet);
   };
 
 
