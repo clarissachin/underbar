@@ -198,9 +198,25 @@
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
+
+  // Option 1
+  // _.some = function(collection, iterator) {
+  //   // TIP: There's a very clever way to re-use every() here.
+  //   iterator = iterator || _.identity;
+  //   return _.reduce(collection, function(isTrue, element) {
+  //     return isTrue || !!iterator(element);
+  //   }, false);
+  // };
+
+  // Option 2
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-    
+    iterator = iterator || _.identity;
+    return !_.every(collection, function(element) {
+      if (!iterator(element)) {
+        return true;
+      };
+    });
   };
 
 
